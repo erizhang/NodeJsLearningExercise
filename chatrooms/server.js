@@ -58,3 +58,5 @@ server.listen(8889, function(){
     console.log("Server listening on port 8889.");
 });
 
+var chatServer = require('./lib/chat-server.js');
+chatServer.listen(server);
