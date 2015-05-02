@@ -44,7 +44,7 @@ $(document).ready(function(){
 		$('#messages').append(divSystemContentElement('Room changed.'));
 	});
 
-	socket.on('message', function (message) {
+	socket.on('message', function(message) {
 		var newElement = $('<div></div>').text(message.text);
 		$('#messages').append(newElement);
 	});
