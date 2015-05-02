@@ -9,7 +9,6 @@ function divSystemContentElement(message) {
 function processUserInput(chatApp, socket) {
 	var message = $('#send-message').val();
 	var systemMessage;
-
 	if (message.charAt(0) === '/') {
 		systemMessage = chatApp.processCommand(message);
 		if (systemMessage) {
@@ -26,12 +25,12 @@ function processUserInput(chatApp, socket) {
 
 var socket = io.connect();
 
+
 $(document).ready(function(){
 	var chatApp = new Chat(socket);
 
 	socket.on('nameResult', function(result) {
 		var message;
-
 		if (result.success) {
 			message = 'You are now known as ' + result.name + '.';
 		} else {
@@ -42,18 +41,16 @@ $(document).ready(function(){
 
 	socket.on('joinResult', function(result) {
 		$('#room').text(result.room);
-		$('#messages').append(divSystemContentElement('Room Changed.'));
+		$('#messages').append(divSystemContentElement('Room changed.'));
 	});
 
-
-	socket.on('message', function(message) {
+	socket.on('message', function (message) {
 		var newElement = $('<div></div>').text(message.text);
 		$('#messages').append(newElement);
 	});
 
 	socket.on('rooms', function(rooms) {
 		$('#room-list').empty();
-
 		for(var room in rooms) {
 			room = room.substring(1, room.length);
 			if (room != '') {
@@ -75,7 +72,6 @@ $(document).ready(function(){
 	$('#send-message').focus();
 
 	$('#send-form').submit(function() {
-		console.log('Submit command.')
 		processUserInput(chatApp, socket);
 		return false;
 	});
