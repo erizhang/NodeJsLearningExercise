@@ -10,7 +10,7 @@ function processUserInput(chatApp, socket) {
 	var message = $('#send-message').val();
 	var systemMessage;
 
-	if (message.chatAt(0) === '/') {
+	if (message.charAt(0) === '/') {
 		systemMessage = chatApp.processCommand(message);
 		if (systemMessage) {
 			$('#messages').append(divSystemContentElement(systemMessage));
@@ -75,6 +75,7 @@ $(document).ready(function(){
 	$('#send-message').focus();
 
 	$('#send-form').submit(function() {
+		console.log('Submit command.')
 		processUserInput(chatApp, socket);
 		return false;
 	});

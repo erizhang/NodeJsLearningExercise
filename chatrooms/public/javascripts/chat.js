@@ -32,7 +32,7 @@ Chat.prototype.processCommand = function(command) {
 		case 'nick':
 			words.shift();
 			var name = words.join(' ');
-			this.socket.emit('nameAttemp', name);
+			this.socket.emit('nameAttempt', name);
 			break;
 		default:
 			message = 'Unrecognized command.';
